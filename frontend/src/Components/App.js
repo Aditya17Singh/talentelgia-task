@@ -53,10 +53,7 @@ function App() {
       <Router>
         <Header isLoggedIn={state.isLoggedIn} Signout={signout} />
         {state.isLoggedIn ? (
-          <AuthenticatedApp
-            user={state.user}
-            updateUser={updateUser}
-          />
+          <AuthenticatedApp user={state.user} updateUser={updateUser} />
         ) : (
           <UnAuthenticatedApp updateUser={updateUser} />
         )}
@@ -74,8 +71,6 @@ function AuthenticatedApp(props) {
         exact
         element={
           <Home
-            todos={props.todos}
-            modalStatus={props.modalStatus}
             user={props.user}
             handleCheckboxChange={props.handleCheckboxChange}
           />
@@ -87,7 +82,6 @@ function AuthenticatedApp(props) {
 function UnAuthenticatedApp(props) {
   return (
     <Routes>
-      <Route path="/" exact element={<Home todos={props.todos} />}></Route>
       <Route
         path="/Signup"
         exact
@@ -96,4 +90,4 @@ function UnAuthenticatedApp(props) {
     </Routes>
   );
 }
-export default (App);
+export default App;
